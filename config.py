@@ -1,1 +1,1 @@
-SITE_URL = 'https://api.github.com'
+SITE_URL = 'https://my-json-server.typicode.com/typicode/demo/posts'
