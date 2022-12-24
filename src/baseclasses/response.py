@@ -7,12 +7,14 @@ class Response:
         self.response = response
         self.response_json = response.json().get('data')
         self.response_status = response.status_code
+        self.parsed_object = None
 
     def validate(self, schema):
         if isinstance(self.response_json, list):
             for item in self.response_json:
                 # validate(item, schema)
-                schema.parse_obj(item)
+                parsed_object = schema.parse_obj(item)
+                self.parsed_object = parsed_object
         else:
             # validate(self.response_json, schema)
             schema.parse_obj(self.response_json, schema)
@@ -24,6 +26,9 @@ class Response:
         else:
             assert self.response_status == status_code, self
         return self
+
+    def get_parsed_object(self):
+        return self.parsed_object
 
     def __str__(self):
         return \

@@ -1,4 +1,5 @@
 from enum import Enum
+from src.baseclasses.pyenum import PyEnum
 
 
 class Genders(Enum):
@@ -6,10 +7,15 @@ class Genders(Enum):
     male = 'male'
 
 
-class Status(Enum):
-    active = 'active'
-    inactive = 'inactive'
+class Statuses(PyEnum):
+    ACTIVE = 'ACTIVE'
+    INACTIVE = 'INACTIVE'
+    DELETED = 'DELETED'
+    BANNED = 'BANNED'
 
 
 class UserErrors(Enum):
     WRONG_EMAIL = 'Email does not have @'
+
+
+print(Statuses.list())
