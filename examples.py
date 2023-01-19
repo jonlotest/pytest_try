@@ -1,6 +1,6 @@
 computer = {
     'id': 23,
-    'status': 'ACTIVE',
+    'status': 'INACTIVE',
     'activated_at': '2012-05-02',
     'expiration_at': '2024-06-01',
     'host_v4': '91.192.222.17',

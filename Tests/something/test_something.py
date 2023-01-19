@@ -12,7 +12,7 @@ def test_somthing_01(status, get_player_generator):
     print(get_player_generator.set_status(status).build())
 
 
-@pytest.mark.skip
+# @pytest.mark.skip
 @pytest.mark.parametrize('balance_value', [
     '100',
     '0',
@@ -23,7 +23,7 @@ def test_somthing_02(balance_value, get_player_generator):
     print(get_player_generator.set_balance(balance_value).build())
 
 
-@pytest.mark.skip
+# @pytest.mark.skip
 @pytest.mark.parametrize('delete_key', [
     'account_status',
     'balance',
@@ -36,7 +36,7 @@ def test_somthing_03(delete_key, get_player_generator):
     print(object_to_send)
 
 
-@pytest.mark.skip
+# @pytest.mark.skip
 @pytest.mark.parametrize('localizations, loc', [
     ('fr', 'fr_FR')
 ])

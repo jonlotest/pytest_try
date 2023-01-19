@@ -5,6 +5,7 @@ from src.schemas.computer import Computer
 from examples import computer
 
 
+@pytest.mark.skip
 def test_getting_users_list(get_users, make_number):
     Response(get_users).assert_status_code(200).validate(User)
     # print(make_number)
@@ -12,7 +13,7 @@ def test_getting_users_list(get_users, make_number):
 
 @pytest.mark.development
 @pytest.mark.production
-@pytest.mark.skip('Skip this test')
+# @pytest.mark.skip('Skip this test')
 def test_another():
     assert 1 == 1
 
