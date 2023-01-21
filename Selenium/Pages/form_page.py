@@ -1,6 +1,8 @@
 from src.baseclasses.base_page import BasePage
 from Selenium.Locators.form_page_locators import FormPageLocators as Locators
 import re
+from config import ADDRESSES
+import random
 
 
 class FormPage(BasePage):
@@ -76,6 +78,22 @@ class FormPage(BasePage):
         self.element_is_visible(Locators.TO).send_keys(value_to)
         self.element_is_visible(Locators.MODE).click()
         self.element_is_visible(Locators.TYPE).click()
+
+    def fill_fields_random(self):
+
+        value_hours = random.randrange(10, 23)    # начинается с 10 т.к.
+        value_minutes = random.randrange(10, 59)  # однозначные не принимает
+        value_from = random.choice(ADDRESSES)
+        value_to = random.choice(ADDRESSES)
+        self.element_is_visible(Locators.HOURS).send_keys(value_hours)
+        self.element_is_visible(Locators.MINUTES).send_keys(value_minutes)
+        self.element_is_visible(Locators.FROM).send_keys(value_from)
+        self.element_is_visible(Locators.TO).send_keys(value_to)
+        self.element_is_visible(Locators.MODE).click()
+        self.element_is_visible(Locators.TYPE).click()
+        print()
+        print('Time: ', value_hours, ':', value_minutes, '\n',
+              'Address: ', value_from, '-', value_to)
 
     @property
     def form_result(self):
