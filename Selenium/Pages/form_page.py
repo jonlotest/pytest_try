@@ -1,5 +1,6 @@
 from src.baseclasses.base_page import BasePage
 from Selenium.Locators.form_page_locators import FormPageLocators as Locators
+import re
 
 
 class FormPage(BasePage):
@@ -76,7 +77,9 @@ class FormPage(BasePage):
         self.element_is_visible(Locators.MODE).click()
         self.element_is_visible(Locators.TYPE).click()
 
+    @property
     def form_result(self):
         result_list = self.elements_are_visible(Locators.RESULT)
         result_text = [i.text for i in result_list]
-        return result_text
+        actual_result = re.findall('[0-9]+', str(result_text))
+        return actual_result
