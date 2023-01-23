@@ -1,6 +1,8 @@
 import pytest
+import random
+
 from Selenium.Pages.form_page import FormPage
-from config import YA_PRAKTIKUM, YA
+from config import YA_PRAKTIKUM, YA, ADDRESSES
 from src.enums.global_enums import GlobalErrorMessages
 
 
@@ -13,7 +15,10 @@ class TestFormPage:
         """
         form_page = FormPage(driver, YA_PRAKTIKUM)
         form_page.open()
-        form_page.fill_fields_morning()
+        form_page.fill_fields_routs(hours='11',
+                                    minutes='12',
+                                    _from=ADDRESSES[5],
+                                    to=ADDRESSES[4])
         actual_result = form_page.form_result
         expected_result = ['28', '2']
         assert expected_result == actual_result, GlobalErrorMessages.WRONG_ELEMENT_COUNT.value
@@ -24,7 +29,10 @@ class TestFormPage:
         """
         form_page = FormPage(driver, YA_PRAKTIKUM)
         form_page.open()
-        form_page.fill_fields_day()
+        form_page.fill_fields_routs(hours='12',
+                                    minutes='45',
+                                    _from=ADDRESSES[5],
+                                    to=ADDRESSES[4])
         actual_result = form_page.form_result
         expected_result = ['28', '2']
         assert expected_result == actual_result, GlobalErrorMessages.WRONG_ELEMENT_COUNT.value
@@ -36,7 +44,10 @@ class TestFormPage:
         """
         form_page = FormPage(driver, YA_PRAKTIKUM)
         form_page.open()
-        form_page.fill_fields_evening()
+        form_page.fill_fields_routs(hours='21',
+                                    minutes='21',
+                                    _from=ADDRESSES[5],
+                                    to=ADDRESSES[4])
         actual_result = form_page.form_result
         expected_result = ['28', '3']
         assert expected_result == actual_result, GlobalErrorMessages.WRONG_ELEMENT_COUNT.value
@@ -48,7 +59,10 @@ class TestFormPage:
         """
         form_page = FormPage(driver, YA_PRAKTIKUM)
         form_page.open()
-        form_page.fill_fields_night()
+        form_page.fill_fields_routs(hours='22',
+                                    minutes='59',
+                                    _from=ADDRESSES[5],
+                                    to=ADDRESSES[4])
         actual_result = form_page.form_result
         expected_result = ['28', '2']
         assert expected_result == actual_result, GlobalErrorMessages.WRONG_ELEMENT_COUNT.value
@@ -60,7 +74,10 @@ class TestFormPage:
         """
         form_page = FormPage(driver, YA_PRAKTIKUM)
         form_page.open()
-        form_page.fill_fields_after_midnight()
+        form_page.fill_fields_routs(hours='06',
+                                    minutes='45',
+                                    _from=ADDRESSES[5],
+                                    to=ADDRESSES[4])
         actual_result = form_page.form_result
         expected_result = ['28', '2']
         assert expected_result == actual_result, GlobalErrorMessages.WRONG_ELEMENT_COUNT.value
@@ -72,7 +89,10 @@ class TestFormPage:
         """
         form_page = FormPage(driver, YA_PRAKTIKUM)
         form_page.open()
-        form_page.fill_fields_zero()
+        form_page.fill_fields_routs(hours='12',
+                                    minutes='30',
+                                    _from=ADDRESSES[1],
+                                    to=ADDRESSES[1])
         actual_result = form_page.form_result
         expected_result = ['0']
         assert expected_result == actual_result, GlobalErrorMessages.WRONG_ELEMENT_COUNT.value
@@ -84,14 +104,13 @@ class TestFormPage:
         """
         form_page = FormPage(driver, YA_PRAKTIKUM)
         form_page.open()
-        form_page.fill_fields_random()
-        actual_result = form_page.form_result
-        print('Actual result: ', actual_result)
+        form_page.fill_fields_routs(hours=random.randrange(10, 23),
+                                    minutes=random.randrange(10, 59),
+                                    _from=random.choice(ADDRESSES),
+                                    to=random.choice(ADDRESSES))
 
     @pytest.mark.skip
     def test_distance(self, driver):
         search_page = FormPage(driver, YA)
         search_page.open()
-        driver.implicitly_wait(10)
         search_page.fill_fields_distance()
-        driver.implicitly_wait(10)

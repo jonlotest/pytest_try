@@ -3,6 +3,9 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/venv" />
+      <excludeFolder url="file://$MODULE_DIR$/.pytest_cache/v" />
+      <excludeFolder url="file://$MODULE_DIR$/Tests/.pytest_cache/v" />
+      <excludeFolder url="file://$MODULE_DIR$/allureres" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
