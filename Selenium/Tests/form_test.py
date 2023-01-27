@@ -1,8 +1,6 @@
-import pytest
 import random
-
 from Selenium.Pages.form_page import FormPage
-from config import YA_PRAKTIKUM, YA, ADDRESSES
+from config import YA_PRAKTIKUM, ADDRESSES
 from src.enums.global_enums import GlobalErrorMessages
 
 
@@ -108,9 +106,3 @@ class TestFormPage:
                                     minutes=random.randrange(10, 59),
                                     _from=random.choice(ADDRESSES),
                                     to=random.choice(ADDRESSES))
-
-    @pytest.mark.skip
-    def test_distance(self, driver):
-        search_page = FormPage(driver, YA)
-        search_page.open()
-        search_page.fill_fields_distance()

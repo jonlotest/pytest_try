@@ -1,8 +1,6 @@
 import re
 from src.baseclasses.base_page import BasePage
-from Selenium.Locators.form_page_locators import FormPageLocators as Locators, DistanceLocators as DL
-from selenium.webdriver.common.keys import Keys
-from config import PHRASE
+from Selenium.Locators.form_page_locators import FormPageLocators as Locators
 
 
 class FormPage(BasePage):
@@ -23,15 +21,3 @@ class FormPage(BasePage):
         result_text = [i.text for i in result_list]
         actual_result = re.findall('[0-9]+', str(result_text))
         return actual_result
-
-    def fill_fields_distance(self):
-        self.element_is_visible(DL.SEARCH).send_keys(PHRASE + Keys.RETURN)
-        self.element_is_visible(DL.SEARCH_RESULT).click()
-        self.element_is_visible(DL.FROM).send_keys('Тула')
-        self.element_is_visible(DL.TO).send_keys('Санкт-Петербур')
-        self.element_is_visible(DL.FUEL_CONSUMPTION).clear()
-        self.element_is_visible(DL.FUEL_CONSUMPTION).send_keys('9')
-        self.element_is_visible(DL.FUEL_PRICE).clear()
-        self.element_is_visible(DL.FUEL_PRICE).send_keys('46')
-        self.element_is_visible(DL.BUTTON).click()
-
