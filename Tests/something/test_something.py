@@ -1,4 +1,3 @@
-import requests
 import pytest
 from src.generators.player_localization import PlayerLocalization
 from src.enums.user_enums import Statuses
